@@ -25,7 +25,7 @@
 
 ## 🌀 Overview
 
-**QuadricsReg** is a systematic global registration framework that leverages concise quadric primitives to represent scenes and utilizes their geometric characteristics to establish correspondences for 6-DoF transformation estimation.
+**QuadricsReg** is a systematic global registration framework that leverages concise quadric primitives to represent scenes and utilizes their semantic-geometric characteristics to establish correspondences for 6-DoF transformation estimation.
 
 In large-scale scenarios, three intrinsic characteristics of point clouds pose significant challenges: **massive amounts of data**, **structural diversity**, and **wide viewpoint variations**. QuadricsReg addresses all three by unifying common geometric primitives into compact, expressive, and discriminative semantic quadrics.
 
