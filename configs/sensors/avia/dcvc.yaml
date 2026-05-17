@@ -1,0 +1,9 @@
+# Livox Avia (non-repetitive scan, 70.4x77.2 deg, 240k/480k/720k pts/s)
+dcvc:
+  startR: 0.28        # near-range radial resolution; dense multi-return allows finer grid
+  deltaR: 0.00040
+  deltaP: 1.0         # 77.2deg / ~1deg = 77 bins
+  deltaA: 0.25        # 70.4deg / 0.25deg = 282 bins; slightly coarser than theoretical for non-repetitive scan
+  min_range: 0.3
+  max_range: 120
+  min_cluster_size: 18   # use 16-18 for single return; 20-24 for triple return

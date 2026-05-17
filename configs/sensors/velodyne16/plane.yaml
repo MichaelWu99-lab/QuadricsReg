@@ -1,0 +1,5 @@
+plane_extraction:
+  resolution: 1.4          # voxel size: 16-line is sparser -> larger voxels to ensure enough points per cell
+  distance_thresh: 0.28    # point-to-plane merge distance; relaxed for sparse/uneven data
+  normal_thresh: 0.95      # normal consistency (cos threshold); strict to avoid false merges
+  eigenvalue_thresh: 16    # planarity criterion (lower = more planes); reduced for 16-line sparsity

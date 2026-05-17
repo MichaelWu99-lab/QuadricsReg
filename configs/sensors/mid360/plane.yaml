@@ -1,0 +1,5 @@
+plane_extraction:
+  resolution: 1.2          # voxel size: MID-360 is sparser per frame; larger voxels ensure enough points for estimation
+  distance_thresh: 0.25    # point-to-plane merge distance; slightly relaxed for sparse sampling/surface variation
+  normal_thresh: 0.95      # normal consistency (cos threshold); strict to avoid false merges
+  eigenvalue_thresh: 18    # planarity criterion (lower = more planes); reduced for MID-360 sparsity

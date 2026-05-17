@@ -1,0 +1,16 @@
+travel:
+  vert_scan: 60            # ~1 deg/bin approximation for -7 to 52 deg (59 deg total)
+  horz_scan: 1024          # horizontal grid size; controls occupancy, avoids over-sparsity (tune 1024-1536)
+  min_vert_angle: -7.0
+  max_vert_angle: 52.0
+  downsample: 1
+  horz_merge_thres: 0.5    # connectivity merge threshold; relaxed for non-uniform sampling
+  vert_merge_thres: 0.6
+  vert_scan_size: 3
+  horz_scan_size: 5
+  horz_skip_size: 3        # reduced from 5 to avoid missed connections
+  horz_extension_size: 5
+  min_range: 0.3
+  max_range: 60
+  min_cluster_size: 10     # minimum projected cluster size; relaxed to keep small targets
+  max_cluster_size: 20000  # ~20k pts/frame; safe upper bound

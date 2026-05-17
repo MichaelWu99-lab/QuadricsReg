@@ -1,0 +1,9 @@
+# VLP-16 (regular scan, 360x30 deg, ~300k pts/s)
+dcvc:
+  startR: 0.40        # 16-line is sparser -> slightly larger near-range grid
+  deltaR: 0.00060     # faster radial growth to avoid fragmentation in sparse far-range
+  deltaP: 2.2         # vertical ~2 deg line spacing; slightly relaxed for connectivity
+  deltaA: 0.40        # azimuth (deg): ~900 bins; reduce to 0.30-0.35 if sampling at 0.1 deg
+  min_range: 0.3
+  max_range: 100
+  min_cluster_size: 12

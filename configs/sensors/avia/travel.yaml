@@ -1,0 +1,17 @@
+travel:
+  # Regular grid approximation for non-repetitive scan connectivity analysis
+  vert_scan: 80            # covers 77.2deg at ~1 deg/bin
+  horz_scan: 768           # 70.4deg horizontal FoV; 768 gives ~0.092 deg/bin (tune between 768-1024)
+  min_vert_angle: -38.6    # symmetric coverage of 77.2deg
+  max_vert_angle: 38.6
+  downsample: 1
+  horz_merge_thres: 0.5    # relaxed for non-uniform sampling
+  vert_merge_thres: 0.6
+  vert_scan_size: 3
+  horz_scan_size: 5
+  horz_skip_size: 2        # reduced skip for narrow FoV + irregular scan to avoid fragmentation
+  horz_extension_size: 5
+  min_range: 0.3
+  max_range: 120
+  min_cluster_size: 12     # minimum projected cluster size; relaxed to keep small targets
+  max_cluster_size: 60000  # triple-return can reach ~72k pts/frame

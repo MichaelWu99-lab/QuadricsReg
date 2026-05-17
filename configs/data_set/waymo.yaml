@@ -1,0 +1,83 @@
+DATA_SET:
+  name: 'waymo'
+
+  data_root: '<USER_FILL_HERE>/waymo/kitti_format/training'
+  label_dir: '<USER_FILL_HERE>/waymo/kitti_format/training/pointcloud_label'
+  semantic_yaml: '<USER_FILL_HERE>/waymo/kitti_format/waymo.yaml'
+  has_semantics: true
+  default_extraction_method: 'Pre_semantics'
+
+benchmark:
+  enabled: true
+  distance_levels:
+    "0_10":  [0, 10]
+  sample_interval_m: 1.0
+
+  pair_mode: 'intra_seq_ode'
+  frame_gap: [5, 20]
+  icp_refine: true
+  icp_voxel: 0.05
+  icp_max_corr_dist: 0.2
+  icp_max_iter: 500
+  lidar_select: 'top'
+
+sequence_range: [0, 100]
+sequence_range_reg: [0, 100]
+
+semantics_seg:
+  car: cluster
+  truck: cluster
+  tree_trunk: cluster
+  vegetation: cluster
+
+  trunk: cluster
+  
+other_instance: ["plane","line","ground"]
+
+semantics_quadrics:
+  car: ellipsoid
+  tree_trunk: elliptic_cylinder
+  vegetation: ellipsoid
+  truck: ellipsoid
+  plane: plane
+  line: line
+  ground: plane
+
+
+  trunk: elliptic_cylinder
+
+
+  cluster: ellipsoid
+
+# registration
+semantics_quadrics_reg:
+  car: ellipsoid
+  truck: ellipsoid
+  tree_trunk: elliptic_cylinder
+  vegetation: ellipsoid
+  plane: plane
+  line: line
+
+
+  trunk: elliptic_cylinder
+
+  car_point: point
+  truck_point: point
+  tree_trunk_point: point
+  vegetation_point: point
+  plane_point: point
+  line_point: point
+
+
+  trunk_point: point
+
+
+  cluster: ellipsoid
+  ellipsoid: ellipsoid
+  elliptic_cylinder: elliptic_cylinder
+  elliptic_cone: elliptic_cone
+
+  cluster_point: point
+  ellipsoid_point: point
+  elliptic_cylinder_point: point
+  elliptic_cone_point: point

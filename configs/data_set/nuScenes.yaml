@@ -1,0 +1,87 @@
+DATA_SET:
+  name: 'nuScenes'
+  data_root: '<USER_FILL_HERE>/nuScenes/v1.0-trainval_kitti_format'
+  label_dir: '<USER_FILL_HERE>/nuScenes/v1.0-trainval_kitti_format/labels'
+  semantic_yaml: '<USER_FILL_HERE>/nuScenes/v1.0-trainval_kitti_format/nuScenes.yaml'
+  has_semantics: true
+  default_extraction_method: 'Pre_semantics'
+
+benchmark:
+  enabled: true
+  distance_levels:
+    "0_10":  [0, 10]
+  sample_interval_m: 1.0
+
+  pair_mode: 'intra_seq_ode'
+  frame_gap: [5, 20]
+  icp_refine: true
+  icp_voxel: 0.05
+  icp_max_corr_dist: 0.2
+  icp_max_iter: 500
+
+sequence_range: [0, 100]
+sequence_range_reg: [0, 100]
+
+semantics_seg:
+  vehicle.car: cluster
+  vehicle.truck: cluster
+  static.vegetation: cluster
+
+
+  car: cluster
+  truck: cluster
+  vegetation: cluster
+
+other_instance: ["plane","line","ground"]
+
+semantics_quadrics:
+  vehicle.car: ellipsoid
+  static.vegetation: ellipsoid
+  vehicle.truck: ellipsoid
+  plane: plane
+  line: line
+  ground: plane
+
+
+  car: ellipsoid
+  truck: ellipsoid
+  vegetation: ellipsoid
+
+
+  cluster: ellipsoid
+
+# registration
+semantics_quadrics_reg:
+  vehicle.car: ellipsoid
+  static.vegetation: ellipsoid
+  vehicle.truck: ellipsoid
+  plane: plane
+  line: line
+
+
+  car: ellipsoid
+  truck: ellipsoid
+  vegetation: ellipsoid
+
+  vehicle.car_point: point
+  static.vegetation_point: point
+  vehicle.truck_point: point
+  plane_point: point
+  line_point: point
+
+
+  car_point: point
+  truck_point: point
+  vegetation_point: point
+
+
+  cluster: ellipsoid
+  ellipsoid: ellipsoid
+  elliptic_cylinder: elliptic_cylinder
+  elliptic_cone: elliptic_cone
+
+  cluster_point: point
+  ellipsoid_point: point
+  elliptic_cylinder_point: point
+  elliptic_cone_point: point
+

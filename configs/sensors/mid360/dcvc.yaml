@@ -1,0 +1,9 @@
+# MID-360 (non-repetitive scan, 360x59 deg, ~200k pts/s @10 Hz)
+dcvc:
+  startR: 0.30        # near-range radial resolution; non-repetitive medium density, slightly smaller for connectivity
+  deltaR: 0.00045     # faster radial growth to suppress far-range fragmentation
+  deltaP: 1.0         # vertical angular resolution (deg): 59deg FoV at ~1 deg/bin
+  deltaA: 0.35        # horizontal angular resolution (deg): 360/0.35 ~ 1029 bins, matches travel grid
+  min_range: 0.3
+  max_range: 60
+  min_cluster_size: 15

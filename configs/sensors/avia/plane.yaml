@@ -1,0 +1,5 @@
+plane_extraction:
+  resolution: 1.0          # Avia per-frame density (24k-72k pts) is higher than MID-360; 1.0m voxel balances density and detail
+  distance_thresh: 0.22    # point-to-plane merge distance; slightly relaxed for surface variation and non-uniform sampling
+  normal_thresh: 0.95      # normal consistency (cos threshold)
+  eigenvalue_thresh: 20    # planarity criterion (lower = more planes detected)

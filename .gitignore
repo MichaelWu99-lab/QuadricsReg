@@ -1,0 +1,34 @@
+# Byte-compiled / optimized
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C++ build artifacts
+Thirdparty/*/build/
+*.so
+*.a
+*.o
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Results / logs
+results/
+result_logs/
+experiments_nohup/
+
+# Claude Code
+.claude/
+
+# Demo output
+demo/result/
+
+# Thirdparty artifacts
+Thirdparty/*/Log/
+Thirdparty/*/temp/
+Thirdparty/*/segmented_shapes/

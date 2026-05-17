@@ -1,0 +1,6 @@
+dbscan:
+  eps: 0.45                # Avia density > MID-360 (especially multi-return); slightly tighter than MID-360's 0.50
+  minPts: 5                # robust against noise splitting; increase to 6 for dense triple-return
+  min_range: 0.3           # nominal blind zone 0.1m; use >=0.3m accounting for mounting and noise
+  max_range: 120           # strong long-range capability; default 120m for robustness (adjust 80-150 per scene)
+  min_cluster_size: 20     # slightly higher than MID-360 due to denser frames

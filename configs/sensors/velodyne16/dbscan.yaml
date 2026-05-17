@@ -1,0 +1,7 @@
+dbscan:
+  eps: 0.55                # neighborhood radius; sparser than 64-line so slightly larger
+  minPts: 4                # core point threshold; relaxed vs dense lidars to avoid cluster fragmentation
+  min_range: 0.3           # near-field margin for mechanical mounting/noise
+  max_range: 100           # VLP-16 nominal max 100m; reduce to 80 for robustness
+  min_cluster_size: 12     # fewer points per frame -> lower minimum cluster size
+  # max_cluster_size: 30000  # ~15k-30k pts/frame (5-10 Hz); enable if needed

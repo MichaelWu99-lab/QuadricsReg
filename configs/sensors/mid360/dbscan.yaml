@@ -1,0 +1,6 @@
+dbscan:
+  eps: 0.50                # neighborhood radius; sparser points, increased from 0.35 to 0.50
+  minPts: 4                # core point threshold; reduced from 5 to avoid fragmentation
+  min_range: 0.3           # blind zone 0.1m; use >=0.3m for noise/mounting margin
+  max_range: 60            # typical usable range; weak reflectivity ~40m, conservative at 60m
+  min_cluster_size: 15     # fewer points per frame; reduced from 20

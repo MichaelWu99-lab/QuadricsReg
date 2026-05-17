@@ -1,0 +1,16 @@
+travel:
+  vert_scan: 16            # vertical grid = number of scan lines
+  horz_scan: 1800          # ~0.2 deg/bin (360/0.2=1800); use 3600 for 0.1 deg
+  min_vert_angle: -15.0
+  max_vert_angle: 15.0
+  downsample: 1
+  horz_merge_thres: 0.45   # horizontal connectivity threshold; slightly tighter than 64-line given sparsity
+  vert_merge_thres: 0.50   # vertical connectivity threshold for adjacent rings
+  vert_scan_size: 3
+  horz_scan_size: 5
+  horz_skip_size: 3        # reduced skip to avoid fragmentation and missed connections
+  horz_extension_size: 5
+  min_range: 0.3
+  max_range: 100
+  min_cluster_size: 10     # minimum projected cluster size; keeps small targets
+  max_cluster_size: 30000

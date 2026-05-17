@@ -1,0 +1,5 @@
+plane_extraction:
+    resolution: 1
+    distance_thresh: 0.2 # point-to-plane distance for merging across 26 neighbor voxels
+    normal_thresh: 0.95 # normal angle consistency for merging across 26 neighbor voxels
+    eigenvalue_thresh: 30 # lower for more planes

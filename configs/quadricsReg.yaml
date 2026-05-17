@@ -1,0 +1,49 @@
+if_eval: True
+if_save_representation: True
+
+elementExtraction:
+  extraction_method: "Pre_semantics" # options: cluster, GT_semantics, Pre_semantics
+
+quadricsFitting:
+  topVolume_k_save: 50
+  on_point_threshold_all: 60
+  topVolume_k_point: 10
+  VOXEL_SIZE_quadrics: 0
+  VOXEL_SIZE_point: 0.5
+
+quadricsMatching:
+  topK_correspondence_used: 20
+  threshold_distance_list: [0.2, 0.4, 0.6, 0.8]
+  threshold_correspondence_inlier_distance: 0.5
+  threshold_correspondence_inlier_num: 3
+  grad_pmc: True
+  max_clique_time_limit: 3600
+  kcore_heuristic_threshold: 0.5
+
+quadricsEstimation:
+  if_trans_refine: True
+  if_refine_errorR: True
+  if_refine_errort: True
+  if_est_augment: True
+  optimization_inerations: 300
+  threshold_Manhattan_gtsam: 10
+  threshold_Manhattan_vertification: 5
+  degenerate_quadrics_aid_gtsam: True
+  degenerate_quadrics_aid_vertification: False
+  ground_aid: True
+  vertification_method: "quadrics_semantic" # options: KNN, quadrics_inliers, quadrics_all, quadrics_semantic
+  voxel_size_KNN_vertification: 1
+  hyper_parameter: 0.5
+  radius_vertification: [0, .inf]
+  reference_origin_source: [0, 0, 0]
+  center_type_SVD: "full_center"
+  center_type_gtsam: "full_center"
+  center_type_nn: "full_center"
+  center_type_vertification: "full_center"
+  ground_z: -1.73
+
+eval:
+  icp_recheck: false
+  icp_voxel: 0.05
+  icp_max_corr_dist: 0.2
+  icp_max_iter: 500

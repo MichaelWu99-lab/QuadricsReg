@@ -1,0 +1,77 @@
+DATA_SET:
+  name: 'KITTI-360'
+  data_root: '<USER_FILL_HERE>/KITTI-360'
+  label_dir: '<USER_FILL_HERE>/KITTI-360_labels/data_3d_raw'
+  semantic_yaml: '<USER_FILL_HERE>/semantic-kitti.yaml'
+  has_semantics: true
+  default_extraction_method: 'Pre_semantics'
+
+benchmark:
+  enabled: true
+  sequences: [0, 2, 4, 5, 6, 9]
+  distance_levels:
+    "0_10":  [0, 10]
+    "10_20": [10, 20]
+    "20_30": [20, 30]
+  sample_interval_m: 2.0
+  skip_frames: 250
+  icp_refine: true
+  icp_voxel: 0.05
+  icp_max_corr_dist: 0.2
+  icp_max_iter: 500
+  pair_mode: 'intra_seq_lc'
+  ego_motion_correction: false
+
+
+sequence_list: ["0","2","3","4","5","6","7","8","9","10"]
+sequence_list_reg: ["0","2","3","4","5","6","7","8","9","10"]
+
+semantics_seg:
+  car: cluster
+  vegetation: cluster
+  truck: cluster
+
+  trunk: cluster
+other_instance: ["plane","line","ground"]
+
+semantics_quadrics:
+  car: ellipsoid
+  vegetation: ellipsoid
+  truck: ellipsoid
+  plane: plane
+  line: line
+
+  trunk: elliptic_cylinder
+  ground: plane
+  
+
+  cluster: ellipsoid
+
+# registration
+semantics_quadrics_reg:
+  car: ellipsoid
+  vegetation: ellipsoid
+  truck: ellipsoid
+  plane: plane
+  line: line
+
+  trunk: elliptic_cylinder
+
+  car_point: point
+  vegetation_point: point
+  truck_point: point
+  plane_point: point
+  line_point: point
+
+  trunk_point: point
+
+
+  cluster: ellipsoid
+  ellipsoid: ellipsoid
+  elliptic_cylinder: elliptic_cylinder
+  elliptic_cone: elliptic_cone
+
+  cluster_point: point
+  ellipsoid_point: point
+  elliptic_cylinder_point: point
+  elliptic_cone_point: point

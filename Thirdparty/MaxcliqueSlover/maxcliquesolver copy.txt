@@ -1,0 +1,112 @@
+#include <Eigen/Dense>
+#include <vector>
+#include <map>
+#include <utility>
+#include <ctime>
+#include <clique_solver/pmc_solver.h>
+#include <set>
+
+std::vector<std::pair<int, int>> process_data_matrix(
+    const Eigen::MatrixXd& data_matrix,
+    double max_clique_time_limit,
+    double kcore_heuristic_threshold,
+    int prune_level)
+{
+    // 初始化 graph 和 vertex_to_index
+    std::map<std::pair<int, int>, std::vector<std::pair<int, int>>> graph;
+    std::map<std::pair<int, int>, int> vertex_to_index;
+
+    for (int i = 0; i < data_matrix.rows(); ++i) {
+        std::pair<int, int> vertex1 = std::make_pair(static_cast<int>(data_matrix(i, 0)), static_cast<int>(data_matrix(i, 1)));
+        std::pair<int, int> vertex2 = std::make_pair(static_cast<int>(data_matrix(i, 2)), static_cast<int>(data_matrix(i, 3)));
+
+        if (graph.find(vertex1) != graph.end()) {
+            graph[vertex1].push_back(vertex2);
+        } else {
+            graph[vertex1] = std::vector<std::pair<int, int>>{vertex2};
+            vertex_to_index[vertex1] = vertex_to_index.size();
+        }
+
+        if (graph.find(vertex2) != graph.end()) {
+            graph[vertex2].push_back(vertex1);
+        } else {
+            graph[vertex2] = std::vector<std::pair<int, int>>{vertex1};
+            vertex_to_index[vertex2] = vertex_to_index.size();
+        }
+    }
+
+    std::vector<std::pair<int, int>> corres;
+    std::set<std::pair<int, int>> visited_edges;
+
+    for (const auto &vertex_pair : graph) {
+        const auto &vertex = vertex_pair.first;
+        const auto &neighbors = vertex_pair.second;
+        for (const auto &neighbor : neighbors) {
+            if (visited_edges.count({vertex_to_index.at(vertex), vertex_to_index.at(neighbor)}) == 0 &&
+                visited_edges.count({vertex_to_index.at(neighbor), vertex_to_index.at(vertex)}) == 0) {
+                corres.push_back(std::make_pair(vertex_to_index.at(vertex), vertex_to_index.at(neighbor)));
+                visited_edges.insert({vertex_to_index.at(vertex), vertex_to_index.at(neighbor)});
+            }
+        }
+    }
+
+    clique_solver::INLIER_SELECTION_MODE inlier_selection_mode = clique_solver::INLIER_SELECTION_MODE::PMC_EXACT;
+
+    std::vector<int> max_clique_;
+    std::vector<std::pair<int, int>> result; // 声明 result 变量在函数的整个范围内有效
+
+    if (inlier_selection_mode != clique_solver::INLIER_SELECTION_MODE::NONE)
+    {
+        clique_solver::Graph inlier_graph_;
+
+        inlier_graph_.populateVertices(vertex_to_index.size());
+        for (size_t i = 0; i < corres.size(); ++i)
+        {
+            inlier_graph_.addEdge(corres.at(i).first, corres.at(i).second);
+        }
+
+        clique_solver::MaxCliqueSolver::Params clique_params;
+
+        if (inlier_selection_mode == clique_solver::INLIER_SELECTION_MODE::PMC_EXACT)
+        {
+            clique_params.solver_mode = clique_solver::MaxCliqueSolver::CLIQUE_SOLVER_MODE::PMC_EXACT;
+        }
+        else if (inlier_selection_mode == clique_solver::INLIER_SELECTION_MODE::PMC_HEU)
+        {
+            clique_params.solver_mode = clique_solver::MaxCliqueSolver::CLIQUE_SOLVER_MODE::PMC_HEU;
+        }
+        else
+        {
+            clique_params.solver_mode = clique_solver::MaxCliqueSolver::CLIQUE_SOLVER_MODE::KCORE_HEU;
+        }
+
+        clique_params.time_limit = max_clique_time_limit;
+        clique_params.kcore_heuristic_threshold = kcore_heuristic_threshold;
+
+        clique_solver::MaxCliqueSolver clique_solver(clique_params);
+        max_clique_ = clique_solver.findMaxClique(inlier_graph_, prune_level);
+
+        std::sort(max_clique_.begin(), max_clique_.end());
+
+        if (max_clique_.size() <= 1)
+        {
+            std::cout << "Clique size too small. Abort." << std::endl;
+            return {};
+        }
+
+        std::map<int, std::pair<int, int>> index_to_vertex;
+        for (const auto &vertex_pair : vertex_to_index)
+        {
+            index_to_vertex[vertex_pair.second] = vertex_pair.first;
+        }
+
+        for (const int &idx : max_clique_)
+        {
+            const auto &vertex = index_to_vertex[idx];
+            result.push_back(vertex);
+        }
+    }
+
+    return result; // 将 return result 移动到 if 语句外部
+}
+
