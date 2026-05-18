@@ -6,7 +6,7 @@
 
   [![Paper](https://img.shields.io/badge/Paper-IEEE_T--RO-004088?logo=ieee)](https://doi.org/10.1109/TRO.2026.3686263)
   [![arXiv](https://img.shields.io/badge/arXiv-2412.02998-b31b1b?logo=arxiv)](https://arxiv.org/abs/2412.02998)
-  [![Project Page](https://img.shields.io/badge/Project-Page-success?logo=github)](https://MichaelWu99-lab.github.io/QuadricsReg)
+  [![Project Page](https://img.shields.io/badge/Project-Page-success?logo=github)](https://levenberg.github.io/QuadricsReg/)
   [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
   **QuadricsReg: Large-Scale Point Cloud Registration using Semantic Quadric Primitives**
