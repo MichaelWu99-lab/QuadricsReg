@@ -134,9 +134,9 @@ QuadricsReg/
 
 ```bibtex
 @ARTICLE{wu2026quadricsreg,
-  author  = {Ji Wu and Huai Yu and Shu Han and Xi-Meng Cai and Ming-Feng Wang and Wen Yang and Gui-Song Xia},
+  author  = {Wu, Ji and Yu, Huai and Han, Shu and Cai, Xi-Meng and Wang, Ming-Feng and Yang, Wen and Xia, Gui-Song},
   title   = {QuadricsReg: Large-Scale Point Cloud Registration using Semantic Quadric Primitives},
-  journal = {IEEE Transactions on Robotics},
+  journal = {IEEE Transactions on Robotics (T-RO)},
   year    = {2026},
   volume  = {42},
   number  = {},
